@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using ServiceClima.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<DataContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("conex")));
 
 var app = builder.Build();
 
@@ -22,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Clima}/{action=Index}/{id?}");
+    pattern: "{controller=Clima}/{action=AddClima}/{id?}");
 
 app.Run();

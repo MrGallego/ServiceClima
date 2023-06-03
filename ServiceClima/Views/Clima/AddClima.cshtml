@@ -1,6 +1,33 @@
-﻿
+﻿@model ServiceClima.Models.Clima
 @{
 	Layout = "_Layout";
 }
+<h1>Bienvenido agregue su nuevo pronostico</h1>
+<h5>
+    llene los campos correctamente por favor
+</h5>
+<br />
+<form asp-action="AddClima">
+  <div class="mb-3"> 
+	  <label for="Ciudad"  class="form-label">Ciudad</label>
+	  <input asp-for="Ciudad" type="text" class="form-control"/>
+		<span class="text-danger" asp-validation-for="Ciudad"></span>
+  </div>
+	<div class="mb-3">
+		<label for="Temperatura" class="form-label">Temperatura</label>
+		<input asp-for="Temperatura" type="text" class="form-control" />
+	</div>
+	<div class="mb-3">
+		<label for="Humedad" class="form-label">Humedad</label>
+		<input asp-for="Humedad" type="text" class="form-control" />
+	</div>
+	@if (TempData["msg"] !=null)
+	{
+		<div class="mb-3">
+			@TempData["msg"]
+		</div>
+	}
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<a href="" class="btn btn-primary">Todos los pronosticos</a>
 
-<p>Hola add</p>
+</form>

@@ -18,8 +18,14 @@ namespace ServiceClima.Controllers
         [HttpPost]
         public IActionResult AddClima(Clima clima)
         {
+            if (!ModelState.IsValid)
+            {
+				return View();
+
+			}
+            TempData["msg"] = "Agregado";
             return View();
-        }
+		}
 
     }
 }
