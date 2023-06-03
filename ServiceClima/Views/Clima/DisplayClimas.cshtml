@@ -34,8 +34,8 @@
                             </td>
                             <td>
                                 <input type="hidden" value="@clima.Id" />
-                                <a class="btn btn-primary" asp-action="Editar" asp-route-id="@clima.Id">Editar</a>
-                                <a class="btn btn-danger" asp-action="borrar" asp-route-id="@clima.Id">Borrar</a>
+                                <a href="/Clima/UpdateClima?id=@clima.Id" class="btn btn-success">Editar</a>
+                                <a href="/Clima/DeleteClima?id=@clima.Id" class="btn btn-danger">Borrar</a>
                             </td>
                         </tr>
                     }

@@ -1,0 +1,18 @@
+﻿@model ServiceClima.Models.LoginViewModel
+@{
+}
+<h2>Iniciar sesión</h2>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <div>
+        <label>Email:</label>
+        <input type="email" asp-for="Email" />
+    </div>
+    <div>
+        <label>Contraseña:</label>
+        <input type="password" asp-for="Password" />
+    </div>
+    <div>
+        <input type="submit" value="Iniciar sesión" />
+    </div>
+</form>
