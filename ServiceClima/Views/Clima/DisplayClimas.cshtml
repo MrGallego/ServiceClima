@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ServiceClima.Models.Clima>
+@{
+	<div class="mt-2"> 
+		<div class="row">
+		<h2>Pronosticos</h2>
+		<div class="col-md-4">
+		<a href="/Clima/AddClima" class="btn btn-primary">Agregar pronostico</a>
+		</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="display:none;">Id</th>
+                        <th>Ciudad</th>
+                        <th>Temperatura</th>
+                        <th>Humedad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var clima in Model)
+                    {
+                        <tr class="tde">
+                            <td style="display:none;">
+                                @clima.Id
+                            </td>
+
+                            <td>
+                                @clima.Ciudad
+                            </td>
+                            <td>
+                                @clima.Temperatura
+                            </td>
+                            <td>
+                                @clima.Humedad
+                            </td>
+                            <td>
+                                <input type="hidden" value="@clima.Id" />
+                                <a class="btn btn-primary" asp-action="Editar" asp-route-id="@clima.Id">Editar</a>
+                                <a class="btn btn-danger" asp-action="borrar" asp-route-id="@clima.Id">Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+		</div>
+	</div>
+}

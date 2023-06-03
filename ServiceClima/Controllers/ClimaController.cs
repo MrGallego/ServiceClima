@@ -5,6 +5,11 @@ namespace ServiceClima.Controllers
 {
     public class ClimaController : Controller
     {
+        private readonly DataContext _dataContext;
+        public ClimaController(DataContext context)
+        {
+            _dataContext = context;
+        }
         public IActionResult Index()
         {
 
@@ -23,9 +28,26 @@ namespace ServiceClima.Controllers
 				return View();
 
 			}
-            TempData["msg"] = "Agregado";
-            return View();
+            try
+            {
+                _dataContext.Add(clima);
+                _dataContext.SaveChanges();
+                TempData["msg"] = "Agregado";
+                return RedirectToAction("AddClima");
+            }
+            catch (Exception ex )
+            {
+				TempData["msg"] = "No se agrego!";
+				return View();
+            }
+        
+
 		}
+        public IActionResult DisplayClimas()
+        {
+            var climas = _dataContext.Climas.ToList();
+            return View(climas);
+        }
 
     }
 }
