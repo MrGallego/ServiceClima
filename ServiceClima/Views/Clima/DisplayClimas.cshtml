@@ -1,45 +1,59 @@
 ﻿@model IEnumerable<ServiceClima.Models.Clima>
 @{
-	<div class="mt-2"> 
-		<div class="row">
-		<h2>Pronosticos</h2>
-		<div class="col-md-4">
-		<a href="/Clima/AddClima" class="btn btn-primary">Agregar pronostico</a>
-		</div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="display:none;">Id</th>
-                        <th>Ciudad</th>
-                        <th>Temperatura</th>
-                        <th>Humedad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var clima in Model)
-                    {
-                        <tr class="tde">
-                            <td style="display:none;">
-                                @clima.Id
-                            </td>
-
-                            <td>
-                                @clima.Ciudad
-                            </td>
-                            <td>
-                                @clima.Temperatura
-                            </td>
-                            <td>
-                                @clima.Humedad
-                            </td>
-                            <td>
-                                <input type="hidden" value="@clima.Id" />
-                                <a href="/Clima/UpdateClima?id=@clima.Id" class="btn btn-success">Editar</a>
-                                <a href="/Clima/DeleteClima?id=@clima.Id" class="btn btn-danger">Borrar</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-		</div>
-	</div>
+    Layout = "_Layout";
 }
+
+<script>
+    function confirmarBorrado(id) {
+        if (confirm("¿Estás seguro que deseas borrar este pronóstico?")) {
+            window.location.href = "/Clima/DeleteClima?id=" + id;
+        }
+    }
+</script>
+<br />
+<br />
+<h2>Pronósticos</h2>
+
+<div class="col-md-4">
+    <a href="/Clima/AddClima" style="margin-bottom:1rem;" class="btn btn-success">Agregar pronóstico</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="display:none;">Id</th>
+            <th>Ciudad</th>
+            <th>Temperatura</th>
+            <th>Humedad</th>
+            <th id="acciones">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var clima in Model)
+        {
+            <tr class="tde">
+                <td style="display:none;">
+                    @clima.Id
+                </td>
+
+                <td>
+                    @clima.Ciudad
+                </td>
+                <td>
+                    @clima.Temperatura
+                </td>
+                <td>
+                    @clima.Humedad
+                </td>
+                <td>
+                    <input type="hidden" value="@clima.Id" />
+                    <a href="/Clima/UpdateClima?id=@clima.Id" id="botonT" class="btn btn-primary">Editar</a>
+
+                    <!-- Botón de borrado con alerta de confirmación -->
+                    <button class="btn btn-danger" onclick="confirmarBorrado('@clima.Id')">Borrar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

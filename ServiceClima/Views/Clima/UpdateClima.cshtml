@@ -1,31 +1,39 @@
 ﻿@model ServiceClima.Models.Clima
 @{
+	Layout = "_Layout";
 }
-
 <form asp-action="UpdateClima">
-	<h2>Editar pronostico</h2>
+	<h2>Editar pronóstico</h2>
 	<input asp-for="Id" type="hidden" class="form-control" />
+	<div class="editar">
 
-	<div class="mb-3">
-		<label for="Ciudad" class="form-label">Ciudad</label>
-		<input asp-for="Ciudad" type="text" class="form-control" />
-		<span class="text-danger" asp-validation-for="Ciudad"></span>
-	</div>
-	<div class="mb-3">
-		<label for="Temperatura" class="form-label">Temperatura</label>
-		<input asp-for="Temperatura" type="text" class="form-control" />
-	</div>
-	<div class="mb-3">
-		<label for="Humedad" class="form-label">Humedad</label>
-		<input asp-for="Humedad" type="text" class="form-control" />
-	</div>
+		<br />
+	
+			<input asp-for="Ciudad" type="text" class="form-control" placeholder="@Model.Ciudad"/>
+			<span class="text-danger" asp-validation-for="Ciudad"></span>
+
+
+		<br />
+		
+
+			<input asp-for="Temperatura" type="text" class="form-control" placeholder="@Model.Temperatura" />
+
+
+		<br />
+
+			<input asp-for="Humedad" type="text" class="form-control" placeholder="@Model.Humedad" />
+
+		<br />
+
+	
 	@if (TempData["msg"] != null)
 	{
 		<div class="mb-3">
 			@TempData["msg"]
 		</div>
 	}
-	<button type="submit" class="btn btn-primary">Modificar</button>
-	<a href="/Clima/DisplayClimas" class="btn btn-primary">Volver</a>
+		<button type="submit" id="btnE" class="btn btn-primary">Modificar</button>
+		<a href="/Clima/DisplayClimas" class="btn btn-warning">Volver</a>
+	</div>
 
 </form>

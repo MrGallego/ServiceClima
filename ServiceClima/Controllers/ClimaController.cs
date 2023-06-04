@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace ServiceClima.Controllers
 {
-    
     public class ClimaController : Controller
     {
         private readonly DataContext _dataContext;
